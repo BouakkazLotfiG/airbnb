@@ -6,6 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import Modal from './Modal';
 import CategoryInput from '../inputs/CategoryInput';
+import CountrySelect from '../inputs/CountrySelect';
 import Input from '../inputs/Input';
 import Heading from '../Heading';
 
@@ -114,21 +115,20 @@ const RentModal = () => {
     </div>
   );
 
-  //   if (step === STEPS.LOCATION) {
-  //     bodyContent = (
-  //       <div className='flex flex-col gap-8'>
-  //         <Heading
-  //           title='Where is your place located?'
-  //           subtitle='Help guests find you!'
-  //         />
-  //         <CountrySelect
-  //           value={location}
-  //           onChange={(value) => setCustomValue('location', value)}
-  //         />
-  //         <Map center={location?.latlng} />
-  //       </div>
-  //     );
-  //   }
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Where is your place located?'
+          subtitle='Help guests find you!'
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
+      </div>
+    );
+  }
 
   //   if (step === STEPS.INFO) {
   //     bodyContent = (
@@ -230,7 +230,7 @@ const RentModal = () => {
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
       title='Airbnb your home!'
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
