@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import useLoginModal from '../hooks/UseLoginModal';
 import useRegisterModal from '../hooks/useRagisterModal';
 import useRentModal from '../hooks/useRentModal';
@@ -19,6 +21,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const rentModal = useRentModal();
+  const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -97,7 +100,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className='flex flex-col cursor-pointer'>
             {currentUser ? (
               <>
-                <MenuItem label='My trips' onClick={() => {}} />
+                <MenuItem
+                  label='My trips'
+                  onClick={() => router.push('/trips')}
+                />
                 <MenuItem label='My favorites' onClick={() => {}} />
                 <MenuItem label='My reservations' onClick={() => {}} />
                 <MenuItem label='My proporties' onClick={() => {}} />
